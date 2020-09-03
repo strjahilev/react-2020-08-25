@@ -5,6 +5,8 @@ import Rate from './rate';
 
 function Restaurant({ restaurant }) {
   const { reviews, name, menu } = restaurant;
+  const [sumRate, setSumRate] = useState(0);
+
   let average = 0;
 
   return (
@@ -13,6 +15,13 @@ function Restaurant({ restaurant }) {
       {reviews.map((review) => {
         average = (average + review.rating) / reviews.length;
       })}
+      {/*{*/}
+      {/*    reviews.map((review) => {*/}
+      {/*        setSumRate(sumRate => sumRate + review.rating)*/}
+      {/*        return <Rate rate={sumRate/reviews.length}/>*/}
+      {/*    }) */}
+      {/*}*/}
+
       <Rate rate={average} />
       <Menu menu={menu} />
       {reviews.map((review) =>
