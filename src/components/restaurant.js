@@ -5,7 +5,7 @@ import Rate from './rate';
 
 function Restaurant({ restaurant }) {
   const { reviews, name, menu } = restaurant;
-  const [sumRate, setSumRate] = useState(0);
+  // const [sumRate, setSumRate] = useState(0);
 
   let average = 0;
 
