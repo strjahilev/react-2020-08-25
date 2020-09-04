@@ -5,25 +5,20 @@ import Rate from './rate';
 
 function Restaurant({ restaurant }) {
   const { reviews, name, menu } = restaurant;
-  // const [sumRate, setSumRate] = useState(0);
-  //   const average2 = useMemo(
-  //       () => reviews.map(review => {
-  //           setSumRate(sumRate => sumRate + review.rating)
-  //           debugger
-  //       }),
-  //       [sumRate, reviews]
-  //   );
-  let average = 0;
-  debugger;
+  const averageRate = useMemo(() => {
+    const total = reviews.reduce((acc, { rating }) => acc + rating, 0);
+    return Math.round(total / reviews.length);
+  }, [reviews]);
+  // let averageRate = 0;
+
   return (
     <div>
       <h1>{name}</h1>
-      {reviews.map((review) => {
-        average = (average + review.rating) / reviews.length;
-      })}
-      {/*<Rate rate={average2}/>*/}
+      {/*{reviews.map((review) => {*/}
+      {/*  average = (average + review.rating) / reviews.length;*/}
+      {/*})}*/}
 
-      <Rate rate={average} />
+      <Rate rate={averageRate} />
       <Menu menu={menu} />
       {reviews.map((review) =>
         review ? <Review key={review.id} review={review} /> : false
