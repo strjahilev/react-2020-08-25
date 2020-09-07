@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import propTypes from 'prop-types';
 import Restaurant from '../restaurant';
 import Navigation from '../navigation';
 
@@ -19,6 +20,14 @@ const Restaurants = ({ restaurants }) => {
       <Restaurant restaurant={activeRestaurant} />
     </div>
   );
+};
+
+Restaurants.propTypes = {
+  restaurants: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 };
 
 export default Restaurants;
