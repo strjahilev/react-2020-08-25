@@ -29,6 +29,12 @@ describe('Reviews', () => {
   it('isReviews', () => {
     const wrapper = mount(<Reviews reviews={reviews} />);
     expect(wrapper).toBeTruthy();
-    expect(wrapper.props().reviews[0]).toEqual(reviewFirst);
+    expect(wrapper.props().reviews).toEqual(reviews);
+  });
+
+  it('isReviewsId', () => {
+    const wrapper = mount(<Reviews reviews={reviews} />);
+    expect(wrapper).toBeTruthy();
+    expect(wrapper.props().reviews[0].id).toEqual(reviewFirst.id);
   });
 });
