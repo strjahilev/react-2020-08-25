@@ -11,6 +11,7 @@ class Menu extends React.Component {
         id: PropTypes.string.isRequired,
       }).isRequired
     ).isRequired,
+    nameRestaurant: PropTypes.string.isRequired,
   };
 
   state = { error: null };
@@ -20,7 +21,7 @@ class Menu extends React.Component {
   }
 
   render() {
-    const { menu } = this.props;
+    const { menu, nameRestaurant, restaurantId } = this.props;
 
     if (this.state.error) {
       return <p>{this.state.error.message}</p>;
@@ -30,7 +31,12 @@ class Menu extends React.Component {
       <div className={styles.menu}>
         <div>
           {menu.map((product) => (
-            <Product key={product.id} product={product} />
+            <Product
+              key={product.id}
+              product={product}
+              nameRestaurant={nameRestaurant}
+              restaurantId={restaurantId}
+            />
           ))}
         </div>
       </div>

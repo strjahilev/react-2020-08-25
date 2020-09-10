@@ -1,3 +1,15 @@
 .restaurant {
   padding: 12px;
 }
+
+.order {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  margin: 25px;
+  border: solid 1px saddlebrown;
+}
+
+.orderText {
+  margin: 0 20px;
+}

@@ -5,9 +5,10 @@ import Reviews from '../reviews';
 import Banner from '../banner';
 import Rate from '../rate';
 import styles from './restaurant.module.css';
+import Order from '../order';
 
 const Restaurant = ({ restaurant }) => {
-  const { name, menu, reviews } = restaurant;
+  const { name, menu, reviews, id } = restaurant;
 
   const averageRating = useMemo(() => {
     const total = reviews.reduce((acc, { rating }) => acc + rating, 0);
@@ -19,8 +20,12 @@ const Restaurant = ({ restaurant }) => {
       <Banner heading={name}>
         <Rate value={averageRating} />
       </Banner>
+      <div className={styles.order}>
+        <p className={styles.orderText}>Ваш заказ:</p>
+        <Order restaurant={restaurant} />
+      </div>
       <div className={styles.restaurant}>
-        <Menu menu={menu} />
+        <Menu menu={menu} nameRestaurant={name} restaurantId={id} />
         <Reviews reviews={reviews} />
       </div>
     </div>
