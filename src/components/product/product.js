@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styles from './product.module.css';
 import MinusIcon from './icons/minus.svg';
 import PlusIcon from './icons/plus.svg';
-import { increment, decrement, describe, getrest } from '../../redux/actions';
+import { increment, decrement, describe } from '../../redux/actions';
 
 // import counter from '../../hocs/counter';
 
@@ -14,7 +14,6 @@ const Product = ({
   increment,
   decrement,
   describe,
-  getrest,
   fetchData,
   nameRestaurant,
   restaurantId,
@@ -53,9 +52,9 @@ const Product = ({
                     product.id,
                     product.name,
                     product.price,
-                    nameRestaurant
+                    nameRestaurant,
+                    restaurantId
                   );
-                  getrest(restaurantId, nameRestaurant);
                 }}
                 data-id="product-increment"
               >
@@ -90,7 +89,6 @@ const mapDispatchToProps = {
   increment,
   decrement,
   describe,
-  getrest,
 };
 
 // const mapDispatchToProps = (dispatch) => ({

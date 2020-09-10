@@ -1,4 +1,3 @@
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const DESCRIBE = 'DESCRIBE';
-export const GETREST = 'GETREST';

@@ -1,3 +1,7 @@
 .dish {
   border-bottom: saddlebrown solid 1px;
 }
+
+.restaurant {
+  font-weight: bold;
+}
