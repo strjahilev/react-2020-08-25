@@ -5,10 +5,12 @@ import Restaurant from '../restaurant';
 import Tabs from '../tabs';
 
 const Restaurants = ({ restaurants }) => {
-  const tabs = restaurants.map((restaurant) => ({
-    title: restaurant.name,
-    content: <Restaurant restaurant={restaurant} />,
-  }));
+  const tabs = restaurants.map((restaurant) => {
+    return {
+      title: restaurant.id.name,
+      content: <Restaurant restaurant={restaurant.id} />,
+    };
+  });
 
   return <Tabs tabs={tabs} />;
 };
@@ -16,11 +18,13 @@ const Restaurants = ({ restaurants }) => {
 Restaurants.propTypes = {
   restaurants: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.object.isRequired,
     }).isRequired
   ).isRequired,
 };
 
-export default connect((state) => ({
-  restaurants: state.restaurants,
-}))(Restaurants);
+export default connect((state) => {
+  return {
+    restaurants: state.restaurants,
+  };
+})(Restaurants);
