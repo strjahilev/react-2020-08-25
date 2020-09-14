@@ -5,28 +5,32 @@ import Rate from '../../rate';
 import styles from './review.module.css';
 import { connect } from 'react-redux';
 
-const Review = ({ reviews, review, users }) => (
-  <div className={styles.review} data-id="review">
-    <div className={styles.content}>
-      <div>
-        <h4 className={styles.name} data-id="review-user">
-          {users[reviews[review].userId].name}
-        </h4>
-        <p className={styles.comment} data-id="review-text">
-          {reviews[review].text}
-        </p>
-      </div>
-      <div className={styles.rate}>
-        <Rate value={reviews[review].rating} />
+const Review = ({ reviews, review, users }) => {
+  return (
+    <div className={styles.review} data-id="review">
+      <div className={styles.content}>
+        <div>
+          <h4 className={styles.name} data-id="review-user">
+            {users[reviews[review].userId].name}
+          </h4>
+          <p className={styles.comment} data-id="review-text">
+            {reviews[review].text}
+          </p>
+        </div>
+        <div className={styles.rate}>
+          <Rate value={reviews[review].rating} />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-const mapStateToProps = (state) => ({
-  reviews: state.reviews,
-  users: state.users,
-});
+const mapStateToProps = (state) => {
+  return {
+    reviews: state.reviews,
+    users: state.users,
+  };
+};
 
 Review.propTypes = {
   reviews: PropTypes.objectOf(

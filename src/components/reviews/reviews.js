@@ -5,20 +5,22 @@ import Review from './review';
 import styles from './reviews.module.css';
 import { connect } from 'react-redux';
 
-const Reviews = ({ reviewsId }) => {
+const Reviews = ({ reviewsId, restId }) => {
   return (
     <div className={styles.reviews}>
       {reviewsId.map((review) => (
         <Review key={review} review={review} />
       ))}
-      <ReviewForm />
+      <ReviewForm restId={restId} />
     </div>
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  reviewsId: ownProps.reviews,
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    reviewsId: ownProps.reviews,
+  };
+};
 
 Reviews.propTypes = {
   reviewsId: PropTypes.arrayOf(PropTypes.string).isRequired,
