@@ -8,11 +8,13 @@ export const getAverage = (arr) =>
 
 const idSelector = (_, props) => props.id;
 
-export const getById = (selector, defaultValue) =>
-  createSelector(
+export const getById = (selector, defaultValue) => {
+  debugger;
+  return createSelector(
     selector,
     idSelector,
     (entity, id) => entity[id] || defaultValue
   );
+};
 
 export const mapToArray = (selector) => createSelector(selector, Object.values);
