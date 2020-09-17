@@ -11,7 +11,10 @@ import {
   LOAD_PRODUCTS,
 } from './constants';
 
-export const increment = (id) => ({ type: INCREMENT, payload: { id } });
+export const increment = (id) => {
+  debugger;
+  return { type: INCREMENT, payload: { id } };
+};
 export const decrement = (id) => ({ type: DECREMENT, payload: { id } });
 export const remove = (id) => ({ type: REMOVE, payload: { id } });
 
@@ -39,9 +42,7 @@ export const loadReviews = (restaurantId) => async (dispatch) => {
   }
 };
 
-export const loadProducts = (restaurantId) => {
-  return {
-    type: LOAD_PRODUCTS,
-    CallAPI: `/api/products?id=${restaurantId}`,
-  };
-};
+export const loadProducts = (restaurantId) => ({
+  type: LOAD_PRODUCTS,
+  CallAPI: `/api/products?id=${restaurantId}`,
+});

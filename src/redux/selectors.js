@@ -43,13 +43,29 @@ export const orderProductsSelector = createSelector(
   orderSelector,
   (products, order) => {
     return Object.keys(order)
-      .filter((productId) => order[productId] > 0)
-      .map((productId) => products[productId])
-      .map((product) => ({
-        product,
-        amount: order[product.id],
-        subtotal: order[product.id] * product.price,
-      }));
+      .filter((productId) => {
+        return order[productId] > 0;
+      })
+      .map((productId) => {
+        return {
+          product: products.filter((product) => {
+            if (product.id === productId) return product;
+          })[0],
+          amount: order[productId],
+          subtotal:
+            order[productId] *
+            products.filter((product) => {
+              if (product.id === productId) return product;
+            })[0].price,
+        };
+      });
+    // .map((product) => {debugger
+    //  return  {
+    //     product,
+    //       amount: order[product.id],
+    //     subtotal: order[product.id] * product.price,
+    //   }
+    // });
   }
 );
 
