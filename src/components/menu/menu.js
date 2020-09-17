@@ -23,11 +23,13 @@ class Menu extends React.Component {
       return <p>{this.state.error.message}</p>;
     }
 
+    if (menu.length === 0) return null;
+
     return (
       <div className={styles.menu}>
         <div>
-          {menu.map((id) => (
-            <Product key={id} id={id} />
+          {menu.map((product) => (
+            <Product key={product.id} product={product} />
           ))}
         </div>
         <div>
