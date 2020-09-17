@@ -1,10 +1,10 @@
 import produce from 'immer';
 import {
   ADD_REVIEW,
-  FAILURE,
   LOAD_RESTAURANTS,
   REQUEST,
   SUCCESS,
+  FAILURE,
 } from '../constants';
 import { arrToMap } from '../utils';
 
@@ -36,6 +36,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        loaded: false,
         error,
       };
     case ADD_REVIEW:

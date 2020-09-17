@@ -1,6 +1,6 @@
 import { FAILURE, REQUEST, SUCCESS } from '../constants';
 
-export default (stare) => (next) => async (action) => {
+export default (store) => (next) => async (action) => {
   if (!action.CallAPI) return next(action);
 
   const { CallAPI, type, ...rest } = action;
