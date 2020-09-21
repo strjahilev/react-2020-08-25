@@ -44,7 +44,7 @@ class Menu extends React.Component {
   }
 
   render() {
-    const { menu, loading } = this.props;
+    const { menu, loading, restaurantId } = this.props;
 
     if (loading) {
       return <Loader />;

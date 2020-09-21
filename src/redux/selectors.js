@@ -67,3 +67,13 @@ export const totalSelector = createSelector(
   (orderProducts) =>
     orderProducts.reduce((acc, { subtotal }) => acc + subtotal, 0)
 );
+
+export const restaurantByIdProduct = createSelector(
+  restaurantsListSelector,
+  (_, { product }) => product.id,
+  // eslint-disable-next-line array-callback-return
+  (restaurants, id) =>
+    restaurants.find((restaurant) =>
+      restaurant.menu.find((product) => product === id)
+    ).id
+);
