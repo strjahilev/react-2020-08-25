@@ -10,7 +10,7 @@ const App = () => {
 
   useEffect(() => {
     setInterval(() => {
-      setName(Math.random().toString());
+      // setName(Math.random().toString());
     }, 3000);
   }, []);
 
