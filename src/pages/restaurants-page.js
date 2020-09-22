@@ -34,7 +34,7 @@ function RestaurantsPage({
     );
   }
 
-  return <Route path="/restaurants/:restId/:tabId" component={Restaurants} />;
+  return <Route path="/restaurants/:restId" component={Restaurants} />;
 }
 
 export default connect(
