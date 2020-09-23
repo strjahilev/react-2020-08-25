@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Restaurants from '../components/restaurants';
 import Loader from '../components/loader';
 import {
@@ -27,14 +27,10 @@ function RestaurantsPage({
 
   if (match.isExact) {
     return (
-      <div>
-        <h2>select restaurant:</h2>
-        {restaurants.map(({ id, name }) => (
-          <p key={id}>
-            <Link to={`/restaurants/${id}`}>{name}</Link>
-          </p>
-        ))}
-      </div>
+      <>
+        <Restaurants match={match} history={history} />
+        <h2 style={{ textAlign: 'center' }}>Select restaurant</h2>
+      </>
     );
   }
 
