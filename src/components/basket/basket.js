@@ -9,14 +9,25 @@ import './basket.css';
 import BasketRow from './basket-row';
 import BasketItem from './basket-item';
 import Button from '../button';
-import { orderProductsSelector, totalSelector } from '../../redux/selectors';
+import Loader from '../loader';
+import {
+  totalSelector,
+  orderProductsSelector,
+  checkoutMatchPageSelector,
+  orderLoadingSelector,
+} from '../../redux/selectors';
+import { makeOrder } from '../../redux/actions';
+
 import { UserConsumer } from '../../contexts/user';
 
-function Basket({ title = 'Basket', total, orderProducts }) {
-  // console.log('render Basket');
-
-  // const { name } = useContext(userContext);
-
+function Basket({
+  title = 'Basket',
+  total,
+  orderProducts,
+  checkoutMatch,
+  makeOrder,
+  loading,
+}) {
   if (!total) {
     return (
       <div className={styles.basket}>
@@ -27,8 +38,12 @@ function Basket({ title = 'Basket', total, orderProducts }) {
 
   return (
     <div className={styles.basket}>
+      {loading && (
+        <div className={styles.loading}>
+          <Loader />
+        </div>
+      )}
       <h4 className={styles.title}>
-        {/* {`${name}'s basket`} */}
         <UserConsumer>{({ name }) => `${name}'s basket`}</UserConsumer>
       </h4>
       <TransitionGroup>
@@ -51,11 +66,17 @@ function Basket({ title = 'Basket', total, orderProducts }) {
       <BasketRow label="Sub-total" content={`${total} $`} />
       <BasketRow label="Delivery costs:" content="FREE" />
       <BasketRow label="total" content={`${total} $`} bold />
-      <Link to="/checkout">
-        <Button primary block>
-          checkout
+      {checkoutMatch ? (
+        <Button primary block onClick={makeOrder}>
+          make order
         </Button>
-      </Link>
+      ) : (
+        <Link to="/checkout">
+          <Button primary block>
+            go to checkout
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }
@@ -64,5 +85,8 @@ export default connect(
   createStructuredSelector({
     total: totalSelector,
     orderProducts: orderProductsSelector,
-  })
+    checkoutMatch: checkoutMatchPageSelector,
+    loading: orderLoadingSelector,
+  }),
+  { makeOrder }
 )(Basket);
